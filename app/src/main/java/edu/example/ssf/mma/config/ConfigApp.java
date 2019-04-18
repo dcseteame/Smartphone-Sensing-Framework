@@ -51,7 +51,7 @@ public class ConfigApp {
 	public static String csvReaderStimuli = "S01.csv";
 
 	/** The root url to the backend server */
-	public static String backendURL = "localhost:8080/";
+	public static String backendURL = "http://192.168.43.67:35673/";
 
 	/**
 	 * The seconds that have to pass at least before transitioning from
@@ -62,5 +62,5 @@ public class ConfigApp {
 	/**
 	 * The seconds that have to pass before sending the collected data to the server in one bulk
 	 */
-	public static int measureBulkInSeconds = 5;
+	public static int measureBulkInSeconds = 1;
 }

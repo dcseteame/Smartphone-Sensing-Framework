@@ -23,8 +23,6 @@ public class StateIdle extends AbstractState {
 
     @Override
     public void doit() {
-        Log.d("STATEMACHINE", "State: IDLE - Sending ping to backend");
-        D3SHttpClient.getInstance().sendPing(LocalDataStorage.getUuid());
     }
 
     @Override
@@ -32,6 +30,7 @@ public class StateIdle extends AbstractState {
         Log.d("STATEMACHINE", "entry Sate: Idle");
         // Unregister from Backend
         D3SHttpClient.getInstance().unregister(LocalDataStorage.getUuid());
+        LocalDataStorage.setUuid("");
     }
 
     @Override

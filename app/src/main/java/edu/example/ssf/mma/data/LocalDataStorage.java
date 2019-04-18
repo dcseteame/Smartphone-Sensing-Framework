@@ -1,5 +1,6 @@
 package edu.example.ssf.mma.data;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class LocalDataStorage {
     private static List<Float> zValues = new ArrayList<>();
 
     private static String uuid = "";
+
+    private static String earthquake = "";
 
     public static void resetStorages(){
         xValues.clear();
@@ -34,5 +37,33 @@ public class LocalDataStorage {
 
     public static void setUuid(String uuid) {
         LocalDataStorage.uuid = uuid;
+    }
+
+    public static void setEarthquake(String eq){
+        earthquake = eq;
+    }
+
+    public static List<Float> getxValues() {
+        return xValues;
+    }
+
+    public static void setxValues(List<Float> xValues) {
+        LocalDataStorage.xValues = xValues;
+    }
+
+    public static List<Float> getyValues() {
+        return yValues;
+    }
+
+    public static void setyValues(List<Float> yValues) {
+        LocalDataStorage.yValues = yValues;
+    }
+
+    public static List<Float> getzValues() {
+        return zValues;
+    }
+
+    public static void setzValues(List<Float> zValues) {
+        LocalDataStorage.zValues = zValues;
     }
 }
