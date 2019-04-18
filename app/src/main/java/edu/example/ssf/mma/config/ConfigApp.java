@@ -35,10 +35,10 @@ public class ConfigApp {
 	/**
 	 * This is the global sample time of the applications' state-machine in ms.
 	 */
-	public static Integer globalSampleTimeMs = 100;
+	public static Integer globalSampleTimeMs = 20;
 
 	/** The delay of state machine timer task time in ms. */
-	public static Integer delayStateMachineTimerTaskTimeMs = 10;
+	public static Integer delayStateMachineTimerTaskTimeMs = 20;
 
 	/** Switch to simulation- or to real-mode. */
 	/** real-mode == false */
@@ -50,4 +50,17 @@ public class ConfigApp {
 	/** The string for the csv reader stimuli. */
 	public static String csvReaderStimuli = "S01.csv";
 
+	/** The root url to the backend server */
+	public static String backendURL = "localhost:8080/";
+
+	/**
+	 * The seconds that have to pass at least before transitioning from
+	 * State Idle to State Measure
+	 */
+	public static int idleTimeInSeconds = 3;
+
+	/**
+	 * The seconds that have to pass before sending the collected data to the server in one bulk
+	 */
+	public static int measureBulkInSeconds = 5;
 }

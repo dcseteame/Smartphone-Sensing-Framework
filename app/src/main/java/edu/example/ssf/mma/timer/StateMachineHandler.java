@@ -18,16 +18,14 @@
 
 package edu.example.ssf.mma.timer;
 
-import java.util.Timer;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import edu.example.ssf.mma.userInterface.MainActivity;
+import java.util.Timer;
+
 import edu.example.ssf.mma.config.ConfigApp;
-import edu.example.ssf.mma.data.CsvFileWriter;
 import edu.example.ssf.mma.data.CurrentTickData;
 import edu.example.ssf.mma.hardwareAdapter.HardwareFactory;
 import edu.example.ssf.mma.hardwareAdapter.IAccelerometer;
@@ -119,83 +117,7 @@ public class StateMachineHandler extends Handler{
     	CurrentTickData.actState = bundle.getString(StateMachineTimerTask.actStateMsgTag);
     	CurrentTickData.curTimestamp = bundle.getString(StateMachineTimerTask.curTimestampMsgTag);
     	CurrentTickData.curTick = bundle.getInt(StateMachineTimerTask.curTickMsgTag);
-    	
-    	/**
-    	 * Fetch data from the sensors
-    	 * Attention! Some sensor getter-function triggers 
-    	 * underlying drivers to update the sensor value!
-    	 * Fetch the sensor data just one time per tick! 
-    	 * It's better to store data temporary at first.  
-    	 */
-    	//Fetch data from Sensors before writing it in the CSV
-
-		//Update user-interface State
-		MainActivity.actState(CurrentTickData.actState);
-
-
-
-		if(MainActivity.mmaCallBackBool) {
-			//Log.d("getAccX", "StateMachineHandler.MainActivity.mmaCallBackBool");
-				if(ConfigApp.isSimulation){
-					//Fetch data from acceleration sensor
-
-					CurrentTickData.accX=this.accelerometer.getAccX();
-					CurrentTickData.accY=this.accelerometer.getAccY();
-					CurrentTickData.accZ=this.accelerometer.getAccZ();
-					CurrentTickData.accVecA=this.accelerometer.getAccA();
-					//Log.d("getAccX", CurrentTickData.accX + " ");
-					//Fetch data from GPS-Sensor
-					CurrentTickData.GPSalt=this.gps.getAltitude();
-					CurrentTickData.GPSlon=this.gps.getLongitude();
-					CurrentTickData.GPSlat=this.gps.getLatitude();
-					CurrentTickData.GPSbearing=this.gps.getBearing();
-					CurrentTickData.GPSspeed=this.gps.getSpeed();
-
-					//Fetch data from microphone
-					CurrentTickData.micMaxAmpl=microphone.getMaxAmplitude();
-
-					//Fetch data from gyros
-					CurrentTickData.rotationX=this.gyroscope.getRotX();
-					CurrentTickData.rotationY=this.gyroscope.getRotY();
-					CurrentTickData.rotationZ=this.gyroscope.getRotZ();
-					//Fetch data from magnetometer
-					CurrentTickData.magneticX=this.magneto.getMagnetoX();
-					CurrentTickData.magneticY=this.magneto.getMagnetoY();
-					CurrentTickData.magneticZ=this.magneto.getMagnetoZ();
-					//Fetch data from proximity
-					CurrentTickData.proxState=this.proximity.getProximity();
-					
-
-				}
-			else {
-					//Log.d("getAccX", "StateMachineHandler.MainActivity.mmaCallBackBool");
-					// Try with direct usage of sensor data :)
-					CsvFileWriter.writeLine(CurrentTickData.curTick.toString(),
-							CurrentTickData.curTimestamp,
-							CurrentTickData.accX.toString(),
-							CurrentTickData.accY.toString(),
-							CurrentTickData.accZ.toString(),
-							CurrentTickData.accVecA.toString(),
-							CurrentTickData.GPSalt.toString(),
-							CurrentTickData.GPSlon.toString(),
-							CurrentTickData.GPSlat.toString(),
-							CurrentTickData.micMaxAmpl.toString(),
-							CurrentTickData.rotationX.toString(),
-							CurrentTickData.rotationY.toString(),
-							CurrentTickData.rotationZ.toString(),
-							CurrentTickData.magneticX.toString(),
-							CurrentTickData.magneticY.toString(),
-							CurrentTickData.magneticZ.toString(),
-							CurrentTickData.proxState,
-							CurrentTickData.event
-					);
-					//Log.d("Time", CurrentTickData.curTimestamp);
-				}
-		}
-		//Log.d("getAccX", "NOT StateMachineHandler.MainActivity.mmaCallBackBool");
-    	//Call daddy and say everything is ok, by forwarding received message
-    	//super.handleMessage(msg);
-    }
+	}
 	
 	/**
 	 * Initialises (just once) and starts the state-machine.

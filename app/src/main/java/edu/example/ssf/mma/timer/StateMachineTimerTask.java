@@ -17,16 +17,13 @@
  */
 package edu.example.ssf.mma.timer;
 
+import android.os.Bundle;
+import android.os.Message;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimerTask;
-
-
-
-import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 
 import edu.example.ssf.mma.statemachine.IStateMachine;
 import edu.example.ssf.mma.statemachine.StateMachine;
