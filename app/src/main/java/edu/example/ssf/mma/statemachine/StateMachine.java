@@ -1,6 +1,8 @@
 package edu.example.ssf.mma.statemachine;
 
 
+import java.math.BigDecimal;
+
 import edu.example.ssf.mma.config.ConfigApp;
 import edu.example.ssf.mma.data.CurrentTickData;
 import edu.example.ssf.mma.data.LocalDataStorage;
@@ -22,7 +24,7 @@ public class StateMachine implements IStateMachine, IParentStateMachine {
 
     private int consecutiveMeasures = 0;
 
-    private final double THRESHOLD = 0.3;
+    private final double THRESHOLD = 1.5;
 
 
 
@@ -68,6 +70,10 @@ public class StateMachine implements IStateMachine, IParentStateMachine {
 
         current = idle;
         next = idle;
+
+        stateLabel = idle.getStateName();
+        LocalDataStorage.setStateLabel(stateLabel);
+
     }
 
     @Override
@@ -119,21 +125,23 @@ public class StateMachine implements IStateMachine, IParentStateMachine {
         return false;
     }
 
+    /**
+     * This Method checks, if the phone is currently moving.
+     * This is done by checking the Acc-Meter
+     * @return true, if phone moves currently
+     */
     private boolean phoneMoves() {
-        float x = CurrentTickData.accX;
-        float y = CurrentTickData.accY;
-        float z = CurrentTickData.accZ;
+        final float rotX = CurrentTickData.rotationX;
+        final float rotY = CurrentTickData.rotationY;
+        final float rotZ = CurrentTickData.rotationZ;
 
-        double vecAcc = MathCalculations.calculatePythagoras(x,y,z);
+        double vecRot = MathCalculations.calculatePythagoras(rotX,rotY,rotZ);
 
-        // double check if phone did not move not 100%
-        // Thats why we need some threshold.
-        return Math.abs(vecAcc) > 9.81 + THRESHOLD;
+        return !MathCalculations.isValueGreaterThen0(vecRot);
     }
 
     private boolean secondsPassed(int seconds) {
         return ((consecutiveMeasures * ConfigApp.delayStateMachineTimerTaskTimeMs) / 1000)
                 >= seconds;
     }
-
 }

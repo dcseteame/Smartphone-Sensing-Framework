@@ -21,13 +21,21 @@ public class StateMeasureData extends AbstractState {
         super("MEASURE", parentStateMachine);
     }
 
+    /**
+     * Add normalized acc Data
+     */
     @Override
     public void doit() {
        LocalDataStorage.addDataSet(
-               CurrentTickData.accX, CurrentTickData.accY, CurrentTickData.accZ);
-
+               CurrentTickData.accX - LocalDataStorage.getNullify()[0],
+               CurrentTickData.accY- LocalDataStorage.getNullify()[1],
+               CurrentTickData.accZ- LocalDataStorage.getNullify()[2]);
     }
 
+    /**
+     * On entry, register device if needed
+     * Also store nullification Vector to later normalize values send to backend
+     */
     @Override
     public void entry() {
         Log.d("STATEMACHINE", "entry State: Measure");
@@ -35,6 +43,9 @@ public class StateMeasureData extends AbstractState {
 
         if(LocalDataStorage.getUuid().isEmpty())
             registerDevice();
+
+        LocalDataStorage.setNullify(
+                CurrentTickData.accX, CurrentTickData.accY, CurrentTickData.accZ);
     }
 
     @Override

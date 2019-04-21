@@ -109,7 +109,7 @@ public class D3SHttpClient {
         queue.add(stringRequest);
     }
 
-    public void addMeasureEntries(String uuid, MeasurementEntry measurementEntry) throws JSONException {
+    public synchronized void addMeasureEntries(String uuid, MeasurementEntry measurementEntry) throws JSONException {
         String url = ConfigApp.backendURL + "addMeasurement?id=" + uuid;
 
         Gson gson = new GsonBuilder().create();

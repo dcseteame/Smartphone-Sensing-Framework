@@ -66,10 +66,6 @@ public class CurrentTickData {
 	/** setting the speed to 0 in the beginning */
 	public static Float GPSspeed = 0.0f;
 
-	//Microphone Sensor Data
-	/** setting the microphone max amplitude to 0 in the beginning */
-	public static Double micMaxAmpl = 0.0d;
-
 	//Gyroscope Sensor Data
 	/** setting the x-value of the gyroscope to 1 in the beginning */
 	public static Float rotationX=1.0f;
@@ -102,7 +98,7 @@ public class CurrentTickData {
 
 	public static void resetValues(){
 		curTick = 0;curTimestamp = "N.N.";accVecA = 0.0d;accX=1.0f;accY=1.0f;accZ=1.0f;GPSalt = 0.0d;GPSlat = 0.0d;GPSlon = 0.0d;
-		GPSbearing = 0.0f;GPSspeed = 0.0f;micMaxAmpl = 0.0d;rotationX=1.0f;rotationY=1.0f;rotationZ=1.0f;magneticX=1.0f;
+		GPSbearing = 0.0f;GPSspeed = 0.0f;rotationX=1.0f;rotationY=1.0f;rotationZ=1.0f;magneticX=1.0f;
 		magneticY=1.0f;magneticZ=1.0f;proximity=1.0f;proxState="";event="";
 	}
 }

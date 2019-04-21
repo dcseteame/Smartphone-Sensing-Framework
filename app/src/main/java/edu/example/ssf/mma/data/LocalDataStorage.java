@@ -16,22 +16,38 @@ public class LocalDataStorage {
     private static List<Float> yValues = new CopyOnWriteArrayList<>();
     private static List<Float> zValues = new CopyOnWriteArrayList<>();
 
+    private static float[] nullify = new float[3];
+
     private static String uuid = "";
 
-    private static String stateLabel = "";
+    private static String stateLabel = "NOT YET SET";
 
-    private static String earthquake = "";
+    private static String earthquake = "No Earthquake";
 
     public static void resetStorages(){
         xValues.clear();
         yValues.clear();
         zValues.clear();
+
+        nullify[0] = 0;
+        nullify[1] = 0;
+        nullify[2] = 0;
     }
 
     public static void addDataSet(Float x, Float y, Float z){
         xValues.add(x);
         yValues.add(y);
         zValues.add(z);
+    }
+
+    public static void setNullify(float x, float y, float z){
+        nullify[0] = x;
+        nullify[1] = y;
+        nullify[2] = z;
+    }
+
+    public static float[] getNullify(){
+        return nullify;
     }
 
     public static String getUuid(){
@@ -72,5 +88,13 @@ public class LocalDataStorage {
 
     public static void setStateLabel(String stateName) {
         stateLabel = stateName;
+    }
+
+    public static String getStateLabel() {
+        return stateLabel;
+    }
+
+    public static String getEarthquake() {
+        return earthquake;
     }
 }

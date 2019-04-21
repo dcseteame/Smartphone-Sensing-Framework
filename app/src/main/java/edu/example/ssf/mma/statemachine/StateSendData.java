@@ -24,7 +24,7 @@ public class StateSendData extends AbstractState {
     }
 
     @Override
-    public void doit() {
+    public synchronized void doit() {
         Log.d("STATEMACHINE", "entry State: SEND - Sending measure data to backend");
         //Send data to backend.
         MeasurementEntry entry = fromLocalDataStorage();

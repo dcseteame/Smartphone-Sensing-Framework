@@ -97,7 +97,6 @@ public class StateMachineHandler extends Handler{
 		 */
 		this.accelerometer = HardwareFactory.getAccelerometer(context);
 		this.gps = HardwareFactory.getGPS(context);
-		this.microphone = HardwareFactory.getMicrophone(context);
 		this.gyroscope = HardwareFactory.getGyroscope(context);
 		this.magneto = HardwareFactory.getMagnetometer(context);
 		this.proximity = HardwareFactory.getProximity(context);

@@ -31,8 +31,6 @@ import edu.example.ssf.mma.hardwareAdapter.gyroscope.gyro;
 import edu.example.ssf.mma.hardwareAdapter.gyroscope.gyroSim;
 import edu.example.ssf.mma.hardwareAdapter.magnetometer.magneto;
 import edu.example.ssf.mma.hardwareAdapter.magnetometer.magnetoSim;
-import edu.example.ssf.mma.hardwareAdapter.microphone.microSim;
-import edu.example.ssf.mma.hardwareAdapter.microphone.microphone;
 import edu.example.ssf.mma.hardwareAdapter.proximity.proxiSim;
 import edu.example.ssf.mma.hardwareAdapter.proximity.proximity;
 
@@ -61,8 +59,6 @@ public class HardwareFactory {
 
 	public static IGyroscope hwGyro = null;
 
-	public static IMicrophone hwMic = null;
-
 	public static IMagneto hwMagn = null;
 
 	public static IProximity hwProxi = null;
@@ -84,8 +80,6 @@ public class HardwareFactory {
 		Log.d("init?","gps initialized");
 		getGyroscope(context);
 		Log.d("init?","gyro initialized");
-		getMicrophone(context);
-		Log.d("init?","mic initialized");
 		getMagnetometer(context);
 		Log.d("init?","magnetomerer initialized");
 		getProximity(context);
@@ -136,20 +130,6 @@ public class HardwareFactory {
 		return hwGyro;
 	}
 
-	
-	/**
-	 * determines if to uses the devices microphone or simulate a microphone
-	 *
-	 * @return either the simulated or the devices microphone
-	 */
-	public static IMicrophone getMicrophone(Context context) {
-		if(isSimulation){
-			hwMic = new microSim();
-		}else{
-			hwMic = new microphone(context);
-		}
-		return hwMic;
-	}
 	/**
 	 * determines if to uses the devices magnetometer or simulate a magnetometer
 	 *

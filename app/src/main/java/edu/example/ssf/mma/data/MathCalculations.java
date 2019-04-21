@@ -17,6 +17,7 @@
  */
 package edu.example.ssf.mma.data;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
 /**
@@ -52,5 +53,14 @@ public class MathCalculations {
         {
             return 0;
         }
+    }
+
+
+    public static boolean isValueGreaterThen0(double value){
+
+        BigDecimal a = new BigDecimal(value).setScale(2, BigDecimal.ROUND_FLOOR);
+        BigDecimal b = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_FLOOR);
+
+        return a.compareTo(b) == 0;
     }
 }
