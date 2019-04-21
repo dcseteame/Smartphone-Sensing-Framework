@@ -3,6 +3,7 @@ package edu.example.ssf.mma.statemachine;
 
 import edu.example.ssf.mma.config.ConfigApp;
 import edu.example.ssf.mma.data.CurrentTickData;
+import edu.example.ssf.mma.data.LocalDataStorage;
 import edu.example.ssf.mma.data.MathCalculations;
 
 public class StateMachine implements IStateMachine, IParentStateMachine {
@@ -103,6 +104,7 @@ public class StateMachine implements IStateMachine, IParentStateMachine {
         this.next = next;
         consecutiveMeasures = 0;
         setStateLabel(next.getStateName());
+        LocalDataStorage.setStateLabel(next.getStateName());
     }
 
     private boolean phoneNotMovedInLastNSeconds(int n) {

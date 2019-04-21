@@ -3,6 +3,7 @@ package edu.example.ssf.mma.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class stores the x, y and z values of the accelorometer while data is collected locally
@@ -11,11 +12,13 @@ import java.util.List;
  */
 public class LocalDataStorage {
 
-    private static List<Float> xValues = new ArrayList<>();
-    private static List<Float> yValues = new ArrayList<>();
-    private static List<Float> zValues = new ArrayList<>();
+    private static List<Float> xValues = new CopyOnWriteArrayList<>();
+    private static List<Float> yValues = new CopyOnWriteArrayList<>();
+    private static List<Float> zValues = new CopyOnWriteArrayList<>();
 
     private static String uuid = "";
+
+    private static String stateLabel = "";
 
     private static String earthquake = "";
 
@@ -65,5 +68,9 @@ public class LocalDataStorage {
 
     public static void setzValues(List<Float> zValues) {
         LocalDataStorage.zValues = zValues;
+    }
+
+    public static void setStateLabel(String stateName) {
+        stateLabel = stateName;
     }
 }
