@@ -58,9 +58,10 @@ public class MathCalculations {
 
     public static boolean isValueGreaterThen0(double value){
 
-        BigDecimal a = new BigDecimal(value).setScale(2, BigDecimal.ROUND_FLOOR);
-        BigDecimal b = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_FLOOR);
-
-        return a.compareTo(b) == 0;
+        if (value > 0.1 || value < -0.1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -137,7 +137,7 @@ public class StateMachine implements IStateMachine, IParentStateMachine {
 
         double vecRot = MathCalculations.calculatePythagoras(rotX,rotY,rotZ);
 
-        return !MathCalculations.isValueGreaterThen0(vecRot);
+        return MathCalculations.isValueGreaterThen0(vecRot);
     }
 
     private boolean secondsPassed(int seconds) {
